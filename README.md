@@ -23,3 +23,33 @@ docker run -it \
   -p 5432:5432 \
   postgres:13
 ```
+4) Install pgcli to access the postgres server
+```
+pip install pgcli
+```
+5) Connect to database started by step-3
+`pgcli -h localhost -p 5431 -u root -d ny_taxi`
+
+
+### Data Ingestion - Jupyter
+1) Installation
+```
+pip install jupyter
+```
+2) If jupyter notebook ask for token, following command should give toke
+```
+jupyter notebook list
+```
+3) Download taxi data
+https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet
+
+4) install pyarrow to read parquet file
+```
+pin install pandas pyarrow
+``````
+5) install sqlalchmey and psycopg2 for db connections and creating table 
+```
+pip install sqlalchemy
+pip3 install psycopg2
+```
+6) Refer taxi-data-analysis notebook for loading data to postgres
