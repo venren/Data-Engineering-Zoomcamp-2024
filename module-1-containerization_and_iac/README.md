@@ -53,3 +53,11 @@ pip install sqlalchemy
 pip3 install psycopg2
 ```
 6) Refer taxi-data-analysis notebook for loading data to postgres
+
+### Useful commands
+To format the terraform script in vscode once you have the hashicorp terraform plugin
+```
+terraform fmt
+```
+To export the google creds locally using terminal
+ export GOOGLE_CREDENTIALS=<path-to-creds-json>
