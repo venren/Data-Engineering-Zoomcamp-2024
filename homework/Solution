@@ -1,0 +1,48 @@
+1) rm
+2) 0.42.0
+3) 15612
+```
+gzip -d <filename>
+```
+```
+select count(*) from yellow_taxi_data where lpep_pickup_date >= '2019-09-18' and lpep_dropoff_date <= '2019-09-18'
+```
+4) 2019-09-26
+```
+select lpep_pickup_date, max(trip_distance) as max_dis from green_trip_data group by lpep_pickup_date order by max_dis desc LIMIt 1
+```
+5)
++-----------+-------------------+
+| Borough   | sum_amount        |
+|-----------+-------------------|
+| Brooklyn  | 96333.23999999919 |
+| Manhattan | 92271.29999999968 |
+| Queens    | 78671.70999999912 |
++-----------+-------------------+
+```
+ select lookup."Borough", sum(trips.total_amount) sum_amount from green_trip_data trips,
+(select * from zone_lookup) lookup
+where trips."PULocationID" = lookup."LocationID"
+and trips.lpep_pickup_date = '2019-09-18'
+group by lookup."Borough"
+order by sum_amount DESC LIMIT 3
+```
+
+6) JFK Airport
+
+```
+select trips."DOLocationID", max(tip_amount) as max_tip
+from green_trip_data trips,
+(select * from zone_lookup) lookup
+where trips."PULocationID" = lookup."LocationID"
+and lookup."Zone" = 'Astoria'
+and lpep_pickup_date >= '2019-09-01' and lpep_pickup_date <= '2019-09-30'
+group by trips."DOLocationID"
+order by max_tip desc
+LIMIT 1
+```
+Get the corresponding drop off location
+```
+select * from zone_lookup
+where LocationID = 132 
+```
