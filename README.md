@@ -28,7 +28,7 @@ docker run -it \
 pip install pgcli
 ```
 5) Connect to database started by step-3
-`pgcli -h localhost -p 5431 -u root -d ny_taxi`
+`pgcli -h localhost -p 5432 -u root -d ny_taxi`
 
 
 ### Data Ingestion - Jupyter
