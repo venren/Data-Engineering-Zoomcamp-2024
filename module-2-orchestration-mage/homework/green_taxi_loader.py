@@ -5,10 +5,12 @@ if 'data_loader' not in globals():
     from mage_ai.data_preparation.decorators import data_loader
 if 'test' not in globals():
     from mage_ai.data_preparation.decorators import test
+import time     
 
 
 @data_loader
 def load_data_from_api(*args, **kwargs):
+    t_start = time()
     months_to_download = [10,11,12];
     monthly_csv = []
     taxi_dtypes = {
@@ -37,7 +39,8 @@ def load_data_from_api(*args, **kwargs):
         csv = pd.read_csv(url, dtype=taxi_dtypes,parse_dates=parse_dates)
         monthly_csv.append(csv)
     result = pd.concat(monthly_csv)
-    print(result.dtypes)
+    t_end = time()
+    print(f'Completed data loading in {t_end - t_start} mins')
     return result
 
 
