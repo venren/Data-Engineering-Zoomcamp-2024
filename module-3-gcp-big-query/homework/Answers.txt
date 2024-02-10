@@ -1,0 +1,34 @@
+1) SELECT  count(*) FROM `zoomcamp-terraform-intro.hw3_dataset.hw3_external_green_taxi_data`
+840402
+
+2) 
+select count(distinct PULocationID) from `zoomcamp-terraform-intro.hw3_dataset.hw3_external_green_taxi_data`
+select count(distinct PULocationID) from `zoomcamp-terraform-intro.hw3_dataset.hw3_native_green_taxi_data`
+
+External table - 6.41 MB
+Native table - 0 
+
+3) select count(*) from `zoomcamp-terraform-intro.hw3_dataset.hw3_native_green_taxi_data`
+where fare_amount=0
+1622
+
+4) Partition by lpep_pickup_datetime Cluster on PUlocationID
+
+create or replace table `zoomcamp-terraform-intro.hw3_dataset.hw3_green_taxi_partition_cluster`
+partition by date(lpep_pickup_datetime)
+cluster by PUlocationID
+AS (
+  SELECT * FROM `zoomcamp-terraform-intro.hw3_dataset.hw3_native_green_taxi_data`
+);
+
+--Get partition information
+select * from `zoomcamp-terraform-intro.hw3_dataset.INFORMATION_SCHEMA.PARTITIONS`
+
+5) 
+
+-- 12.82 MB
+select count(PULocationID) from `zoomcamp-terraform-intro.hw3_dataset.hw3_native_green_taxi_data`
+where cast(lpep_dropoff_datetime as date) >= '2022-06-01' and cast(lpep_dropoff_datetime as date) <= '2022-06-30'
+-- 1.16 MB
+select count(PULocationID) from `zoomcamp-terraform-intro.hw3_dataset.hw3_green_taxi_partition_cluster`
+where cast(lpep_dropoff_datetime as date) >= '2022-06-01' and cast(lpep_dropoff_datetime as date) <= '2022-06-30'
