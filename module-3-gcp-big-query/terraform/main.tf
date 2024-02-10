@@ -8,12 +8,11 @@ terraform {
 }
 
 provider "google" {
- credentials = "./keys/creds.json"
-  project = "my-project-id"
-  region  = "us-central1"
+  project = "zoomcamp-terraform-intro"
+  region  = "US"
 }
 
-resource "google_storage_bucket" "venren-zoomcamp-module3-hw" {
+resource "google_storage_bucket" "venren-zoomcamp-module3-hw-new" {
   name          = var.gcp_storage_name
   location      = var.location
   force_destroy = true
