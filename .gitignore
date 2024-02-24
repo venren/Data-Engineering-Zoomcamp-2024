@@ -340,3 +340,8 @@ cython_debug/
 
 credentials
 *.data
+
+openjdk-11.0.2_linux-x64_bin.tar.gz
+jdk-11.0.*
+spark-3.3.2*
+module-5-batch-processing/fhv/*
